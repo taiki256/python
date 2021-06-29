@@ -1,0 +1,74 @@
+#ヌメロン
+
+import random
+number_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+def random_number():
+    sample = random.sample(number_list, k=3)
+    sample = sample[0] + sample[1] + sample[2]
+    number = int(sample)
+    return number
+
+def numeron(number):
+    wrong = 0
+    number = str(number)
+    first = number[0]
+    second = number[1]
+    third = number[2]
+    win = False
+    trycount = 1
+    print("""1~9の中から異なる3つの数字で作られた3桁の数字を予想しよう
+ヌメロンスタート！""")
+
+    while trycount <= 6:
+        eatcount = 0
+        bitecount = 0
+        print("\n")
+        count = str(trycount)
+        msg = count + "回目の予想をしてね:"
+        char = input(msg)
+        try:
+            char = int(char)
+            char = str(char)
+            except_first = char[0]
+            except_second = char[1]
+            except_third = char[2]
+            trycount += 1
+
+            if first == except_first:
+                eatcount += 1
+
+            elif first == except_second or first == except_third:
+                bitecount += 1
+
+            if second == except_second:
+                eatcount += 1
+
+            elif second == except_first or second == except_third:
+                bitecount += 1
+
+            if third == except_third:
+                eatcount += 1
+
+            elif third == except_second or third == except_first:
+                bitecount += 1
+
+            eat = str(eatcount)
+            bite = str(bitecount)
+            kekka = eat + "eat," + bite + "biteです!"
+            print(kekka)
+            if eatcount == 3:
+                print("あなたの勝ち!")
+                win = True
+                break
+
+        except (ValueError, IndexError):
+            print("数字を3桁入力してください")
+            continue
+        
+        
+
+    if not win:
+        print("あなたの負け!正解は{}でした".format(number))
+    
+numeron(random_number())
